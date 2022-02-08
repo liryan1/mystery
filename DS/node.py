@@ -62,3 +62,10 @@ class Tree:
             if node is None: return ""
             return f"{_post(node.left)}{_post(node.right)} {node.val}"
         return _post(self.root)
+
+if __name__ == "__main__":
+    S = [1, 2, 5, 10, 'X', 'X', 'X', 8, 'X', 'X', 3, 'X', 6, 'X', 'X']
+    tree = Tree.build(S)
+    print(tree)
+    print(tree.in_order())
+    print(tree.post_order())
