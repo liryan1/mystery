@@ -1,12 +1,7 @@
-class Node:
-    def __init__(self, data=0):
-        self.val = data
-        self.left = self.right = None
-    
-def P(node: Node) -> str:
-    '''Preorder print'''
-    if node is None: return ""
-    return " " + str(node.val) + P(node.left) + P(node.right)
+''' Implementation moved to DS/node.py
+'''
+
+from DS.node import Node
 
 
 def serialize(tree: list, root: Node) -> None:
@@ -25,7 +20,7 @@ def build(tree_items: list) -> Node:
     if not tree_items: return;
 
     def r(i):
-        # Keep track of where we are in the array
+        # Keeprint track of where we are in the array
         if i >= len(tree_items) or tree_items[i] == "X":
             return None, i
         # Assign value of current index to node
@@ -45,8 +40,8 @@ if __name__ == "__main__":
     root.left.right = Node(8)
     root.left.left.left = Node(10)
     root.right.right = Node(6)
-    print("Initial tree (Pre-order):")
-    print(P(root))
+    print("Initial tree (printre-order):")
+    print(Node.print(root))
 
     print("Serialized Tree")
     tree = []
@@ -55,4 +50,4 @@ if __name__ == "__main__":
 
     print("Reconstructed Tree")
     recon = build(tree)
-    print(P(recon))
+    print(Node.print(recon))
