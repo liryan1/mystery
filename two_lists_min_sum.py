@@ -1,7 +1,17 @@
+'''
+Why is the recursive method not exponential after memoizing?
+Big list A --> smaller lists a1, a2
+
+key = (i, sum(a1)) has a finite upper limit
+sum(a1) takes a maximum of sum(A)
+So the time complexity is O(n*sum(A))
+'''
+
 import numpy as np
 
+
 def partition_cost(A: list) -> int:
-    '''Returns the minimum difference of partitioning list A into two.
+    '''Returns the minimum difference of sums after partitioning list A into two lists.
     No constraint on size of each list
     '''
     memo = {}
