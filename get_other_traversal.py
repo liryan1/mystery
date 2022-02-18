@@ -8,7 +8,7 @@ def post_from_IP(InO: list[int], preO: list[int]) -> Node:
     def _recursive(i:int, left:int, right:int):
         if i >= n or (left >= right): return None, i
         node = Node(preO[i])
-        j = InO[left:right].index(preO[i])
+        j = InO[left:right].index(preO[i]) + left
         node.left, i = _recursive(i+1, left, j)
         node.right, i = _recursive(i+1, j+1, right)
         return node, i

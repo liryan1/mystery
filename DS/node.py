@@ -1,4 +1,3 @@
-from collections import deque
 
 class Node:
     def __init__(self, data=0):
@@ -10,6 +9,11 @@ class Node:
         '''Pre order print'''
         if node is None: return ""
         return " " + str(node.val) + Node.look(node.left) + Node.look(node.right)
+
+class Node2:
+    def __init__(self, data=0) -> None:
+        self.val = data
+        self.left = self.right = self.parent = None
 
 class Tree:
     def __init__(self, node: Node=None) -> None:

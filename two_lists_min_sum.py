@@ -1,4 +1,5 @@
 '''
+Partition a list into two lists with the minimum differences of sums
 Why is the recursive method not exponential after memoizing?
 Big list A --> smaller lists a1, a2
 

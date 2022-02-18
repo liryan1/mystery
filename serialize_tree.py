@@ -14,10 +14,12 @@ def serialize(tree, root: Node) -> None:
     serialize(tree, root.left)
     serialize(tree, root.right)
 
+
 def build(tree_items: list) -> Node:
     ''' Reconstructs the tree from serialized list.
     '''
-    if not tree_items: return;
+    if not tree_items:
+        return
 
     def r(i):
         # Keeprint track of where we are in the array
@@ -32,6 +34,7 @@ def build(tree_items: list) -> Node:
     root, _ = r(0)
     return root
 
+
 if __name__ == "__main__":
     root = Node(1)
     root.left = Node(2)
@@ -41,7 +44,7 @@ if __name__ == "__main__":
     root.left.left.left = Node(10)
     root.right.right = Node(6)
     print("Initial tree (printre-order):")
-    print(Node.print(root))
+    print(Node.look(root))
 
     print("Serialized Tree")
     with open("tree.txt", "w") as f:
@@ -54,4 +57,4 @@ if __name__ == "__main__":
     print(tree)
 
     recon = build(tree)
-    print(Node.print(recon))
+    print(Node.look(recon))
