@@ -4,13 +4,13 @@
 from DS.node import Node
 
 
-def serialize(tree: list, root: Node) -> None:
-    ''' Serialize tree to list container.
+def serialize(tree, root: Node) -> None:
+    ''' Serialize tree using I/O.
     '''
     if not root:
-        tree.append("X")
+        tree.write("X\\")
         return
-    tree.append(root.val)
+    tree.write(f"{root.val}\\")
     serialize(tree, root.left)
     serialize(tree, root.right)
 
@@ -44,10 +44,14 @@ if __name__ == "__main__":
     print(Node.print(root))
 
     print("Serialized Tree")
-    tree = []
-    serialize(tree, root)
-    print(tree)
+    with open("tree.txt", "w") as f:
+        serialize(f, root)
 
     print("Reconstructed Tree")
+    with open("tree.txt", "r") as f:
+        tree_str = f.read()
+    tree = tree_str.split("\\")
+    print(tree)
+
     recon = build(tree)
     print(Node.print(recon))
