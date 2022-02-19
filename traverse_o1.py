@@ -8,9 +8,9 @@ def traverse(root: Node2):
     curr = root
     # stop if back to root and coming from right
     while curr:
-        back = curr
         if back == curr.parent: # First time through
             print(curr.val)
+            back = curr
             if curr.left:
                 curr = curr.left
             elif curr.right:
@@ -18,10 +18,12 @@ def traverse(root: Node2):
             else:
                 curr = curr.parent
         elif back == curr.left: # coming from the left node
+            back = curr
             if curr.right:
                 curr = curr.right
             else:
                 curr = curr.parent
         else: # coming up from right node
+            back = curr
             curr = curr.parent
 
