@@ -6,6 +6,7 @@ from DS.node import Node
 
 def serialize(tree, root: Node) -> None:
     ''' Serialize tree using I/O.
+    TODO: handle write error
     '''
     if not root:
         tree.write("X\\")
@@ -17,6 +18,7 @@ def serialize(tree, root: Node) -> None:
 
 def build(tree_items: list) -> Node:
     ''' Reconstructs the tree from serialized list.
+    TODO: Handle I/O errors, file stream
     '''
     if not tree_items:
         return
@@ -51,6 +53,8 @@ if __name__ == "__main__":
         serialize(f, root)
 
     print("Reconstructed Tree")
+    # pass in file into the tree
+    # read in file stream and parse 
     with open("tree.txt", "r") as f:
         tree_str = f.read()
     tree = tree_str.split("\\")
