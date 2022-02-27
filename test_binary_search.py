@@ -1,4 +1,5 @@
 import unittest
+from random import randrange
 from binary_search import searchRange
 
 class TestBinarySearch(unittest.TestCase):
@@ -49,3 +50,11 @@ class TestBinarySearch(unittest.TestCase):
         actual = searchRange(L, 3)
         expected = [10, 11]
         self.assertEqual(actual, expected)
+
+    def test_random1(self):
+        L = [randrange(1, 10) for _ in range(1000)]
+        L.sort()
+        start = L.index(5)
+        stop = len(L) - 1 - L[::-1].index(5)
+        expected = [start, stop]
+        self.assertEqual(searchRange(L, 5), expected)

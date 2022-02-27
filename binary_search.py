@@ -10,7 +10,7 @@ def searchRange(nums: list[int], target: int) -> list[int]:
             end = mid - 1
         elif nums[mid] < target:
             beg = mid + 1
-        elif nums[mid] > target:
+        else: # nums[mid] > target:
             end = mid - 1
     else:
         start = -1
@@ -27,7 +27,7 @@ def searchRange(nums: list[int], target: int) -> list[int]:
             beg = mid + 1
         elif nums[mid] < target:
             beg = mid + 1
-        elif nums[mid] > target:
+        else: # nums[mid] > target:
             end = mid - 1
     else:
         stop = -1
