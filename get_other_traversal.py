@@ -1,4 +1,4 @@
-from DS.node import Node, Tree
+from Trees.node import Node, Tree
 
 def post_from_IP(InO: list[int], preO: list[int]) -> Node:
     ''' Get post-order traversal from in-order and pre-order.

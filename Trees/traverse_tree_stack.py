@@ -1,7 +1,7 @@
 '''
 Traverse tree no recursion
 '''
-from DS.node import Node
+from Trees.node import Node
 from collections import deque
 
 def Tstack(root:Node):

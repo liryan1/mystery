@@ -1,7 +1,7 @@
 ''' Implementation moved to DS/node.py
 '''
 
-from DS.node import Node
+from Trees.node import Node
 
 
 def serialize(tree, root: Node) -> None:

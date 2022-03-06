@@ -124,17 +124,18 @@ class Tree:
         2. Else, find value of the maximum on the left node 
         '''
         def get_max(node: Node) -> Node:
-            if not node.right:
-                return node
-            return get_max(node.right)
+            while node.right:
+                node = node.right
+            return node
 
         def _deleteNode(node: Node, i: int) -> Node:
             if not node: return None
             if node.val > i:
                 node.left = _deleteNode(node.left, i)
+                return node
             elif node.val < i:
                 node.right = _deleteNode(node.right, i)
-
+                return node
             else: # found the node to delete
                 if not node.left:
                     return node.right
@@ -145,7 +146,6 @@ class Tree:
                     N.left = node.left
                     N.right = node.right
                     return N
-
                 
         self.root = _deleteNode(self.root, i)
 
@@ -159,7 +159,8 @@ if __name__ == "__main__":
         x = randrange(1, 100)
         tree.insert(x)
         L.append(x)
-    print(tree)
-    print(L)
-    tree.delete(choice(L))
-    print(tree)
+    print("original tree", tree)
+    x = choice(L)
+    print("Deleting:",x)
+    tree.delete(x)
+    print("New Tree", tree)

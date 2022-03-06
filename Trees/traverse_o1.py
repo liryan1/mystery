@@ -1,7 +1,7 @@
 '''
 Traverse a tree using O(1) space with a parent node.
 '''
-from DS.node import Node2
+from Trees.node import Node2
 
 def traverse(root: Node2):
     ''' Edit: make first part of while loop functional
