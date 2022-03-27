@@ -33,6 +33,24 @@ Some progress updates
   - ford fulkerson - min cut max flow
   - random walk
 
+## 3/26 Graphs and OO
+- Need to review topological sort & Dijkstra
+- **need to do rectangle problem**
+- Graph(V, E)
+  - Adjacency matrix
+    - 0 & 1 edges, cost of edge, probability, or counts
+  - Node, edge list
+- Floyd-Warshall algorithm
+  - understand why the simple algorithm works
+  - the fundamentals of DP
+- Markov process and its relation to the adjacency matrix
+- left multiply a state by the adjacency matrix to obtain the new state
+- OOP intro
+  - encapsulation
+  - polymorphism
+  - interface
+  - dynamic dispatch & RTTI in C++
+
 # Done
 5. BST implement insertion and deletion
 6. Write code to generate tree test cases
