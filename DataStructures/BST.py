@@ -123,30 +123,23 @@ class Tree:
         then move the value up.
         2. Else, find value of the maximum on the left node 
         '''
-        def get_max(node: Node) -> Node:
-            while node.right:
-                node = node.right
-            return node
-
         def _deleteNode(node: Node, i: int) -> Node:
             if not node: return None
             if node.val > i:
                 node.left = _deleteNode(node.left, i)
-                return node
             elif node.val < i:
                 node.right = _deleteNode(node.right, i)
-                return node
             else: # found the node to delete
-                if not node.left:
-                    return node.right
-                elif not node.right:
-                    return node.left
-                else: # darn it, both nodes exist
-                    N = get_max(node.left)
-                    N.left = node.left
-                    N.right = node.right
-                    return N
-                
+                if not node.left or node.right:
+                    return node.right or node.left
+                # darn it, both nodes exist
+                temp = node.left
+                while temp.right:
+                    temp = temp.right
+                node.val = temp.val
+                node.left = _deleteNode(node.left, node.val)
+            return node
+
         self.root = _deleteNode(self.root, i)
 
     def __repr__(self) -> str:
