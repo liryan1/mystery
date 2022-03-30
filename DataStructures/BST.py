@@ -3,24 +3,27 @@ Binary Search Tree implementation.
 '''
 from collections import deque
 from random import randrange, choice
+import io
+
 
 class Node:
-    def __init__(self, data=0):
+    def __init__(self, data: int=0) -> None:
         self.val = data
         self.left = self.right = None
 
-    @staticmethod
-    def print_PO(node) -> str:
+    def print_PO(self) -> str:
         '''Pre order print'''
-        if node is None: return ""
-        return " " + str(node.val) + Node.look(node.left) + Node.look(node.right)
+        if self is None: return ""
+        return " " + str(self.val) + Node.look(self.left) + Node.look(self.right)
 
-    def display(self):
-        '''https://stackoverflow.com/questions/34012886'''
+    def display(self) -> str:
+        ''' Prints a visual of the tree to console. Code is from:
+            https://stackoverflow.com/questions/34012886
+        '''
         lines, *_ = self._display_aux()
         return "\n".join(lines)
 
-    def _display_aux(self):
+    def _display_aux(self) -> str:
         """ https://stackoverflow.com/questions/34012886
         Returns list of strings, width, height, and horizontal coordinate of the root."""
         # No child.
@@ -72,13 +75,26 @@ class Node:
 
 class Tree:
     def __init__(self, data=None) -> None:
-        ''' If data is not iterable, set root to none.
-        Construct the tree by inserting every element in data.
+        ''' If data is Node instance, set root to data.
+            If data is not iterable, set root to None.
+            Else, construct the tree by inserting every element in data.
         '''
-        self.root = None
+        if hasattr(data, 'val') and hasattr(data, 'left') and hasattr(data, 'right'):
+            self.root = data
+            return
+        try:
+            iter(data)
+        except TypeError:
+            self.root = None
+        else:
+            self.root = None
+            for d in data:
+                self.insert(d)
+        return
+        
 
     def layers(self):
-        '''Look through the tree per level '''
+        ''' Debug function to look through the tree per level with BFS '''
         if not self.root: return ""
         out = ""
         curr_lev = 0
@@ -96,7 +112,7 @@ class Tree:
                 q.appendleft((curr.right, lev+1))
         return out
 
-    def insert(self, i):
+    def insert(self, i: int) -> None:
         ''' Insert element into BST. '''
         def _insert(node, i):
             if node.val > i:
@@ -145,15 +161,65 @@ class Tree:
     def __repr__(self) -> str:
         return self.root.display() if self.root else ""
 
-if __name__ == "__main__":
+
+class SerializeTree:
+    def _serial_write(self, root, f: io.TextIOWrapper) -> None:
+        if not root:
+            f.write("R\n")
+            return
+        f.write(f"{root.val}\n")
+        self._serial_write(root.left, f)
+        self._serial_write(root.right, f)
+
+    def serialize(self, root: 'Node', file_name: str = 'tree.txt') -> None:
+        """ Encodes a tree to a file.
+            'R' are empty branches, '\n' are delimitors.
+        """
+        with open(file_name, 'w') as f:
+            self._serial_write(root, f)
+
+    def _make_node(self, s: str) -> 'Node':
+        ''' Create a Node if s is convertible to integer. '''
+        s = s.rstrip("\n")
+        if not s.isnumeric():
+            return None
+        return Node(int(s))
+
+    def _dfs(self, f: io.TextIOWrapper) -> 'Node':
+        ''' Helper function for in order traversal'''
+        node = self._make_node(f.readline())
+        if not node:
+            return
+        node.left = self._dfs(f)
+        node.right = self._dfs(f)
+        return node
+
+    def deserialize(self, path_to_file: str) -> 'Node':
+        """Decodes your encoded data to tree.
+        """
+
+        with open(path_to_file, 'r') as f:
+            node = self._dfs(f)
+        return node
+
+
+def main():
+    # Random test
+    filename = "tree.txt"
     tree = Tree()
-    L = []
     for _ in range(10):
         x = randrange(1, 100)
         tree.insert(x)
-        L.append(x)
-    print("original tree\n", tree, sep="")
-    x = choice(L)
-    print("Deleting:", x)
-    tree.delete(x)
-    print("New Tree\n", tree, sep="")
+    print("Original Tree\n", tree, sep="")
+    print(f"Serializing Tree to {filename}")
+    S = SerializeTree()
+    S.serialize(tree.root, filename)
+    print("Done")
+    print("Deserializing Tree")
+    new_tree = Tree(S.deserialize(filename))
+    print("Done")
+    print("New Tree\n", new_tree, sep="")
+
+
+if __name__ == "__main__":
+    main()

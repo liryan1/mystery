@@ -1,12 +1,14 @@
 # To do
-1. Update deserialize code to operate while reading file
 2. Interpret prefix, postfix, and infix mathematical expressions
 3. Given a string and dictionary, return a string split into two words
 4. class for 24 game, remove duplicate solutions
 7. Read on Shannon information entropy. Construct Huffman tree from a probability distribution
 8. generate nth fibonacci number with O(log n) time
 
-# Progress
+# Questions
+1. In recursive functions, python allows function inside. Say if you need the recursive function to pass in additional parameters. How do we deal with this in C++?
+
+# Progress and Notes
 Some progress updates
 
 ## 2/19
@@ -52,6 +54,10 @@ Some progress updates
   - dynamic dispatch & RTTI in C++
 
 # Done
-5. BST implement insertion and deletion
-6. Write code to generate tree test cases
-
+- [x] BST implement insertion and deletion - **DataStructures/BST.py**
+- [x] Write code to generate tree test cases - **DataStructures/BST.py**
+- [x] Update deserialize code to operate while reading file - **serialize_BST.py**
+- [x] construct tree from preorder and inorder traversals - **get_other_traversal.py**
+- [x] tree traversal using stack & with O(1) space - **Trees/*.py**
+- [x] remove_if - **remove_if.cpp**
+- [x] two rectangles, check if overlap - **overlapping_rectangles.cpp**

@@ -1,4 +1,4 @@
-from Trees.node import Node, Tree
+from Completed.Trees.node import Node, Tree
 
 def post_from_IP(inO: list[int], preO: list[int]) -> Node:
     ''' Get post-order traversal from in-order and pre-order.
@@ -10,12 +10,16 @@ def post_from_IP(inO: list[int], preO: list[int]) -> Node:
     node.right = post_from_IP(inO[idx+1:], preO)
     return node
 
-if __name__ == "__main__":
+
+def main():
     S = [1, 2, 5, 10, 'X', 'X', 'X', 8, 'X', 'X', 3, 'X', 6, 'X', 'X']
     tree = Tree.build(S)
     preO = repr(tree).strip().split(" ")
     IO = tree.in_order().strip().split(" ")
-    print(preO)
-    print(IO)
+    print("Original preorder:", preO)
+    print("Original inorder", IO)
     recon = post_from_IP(IO, preO)
-    print(Node.look(recon))
+    print("Reconstructed preorder", Node.look(recon))
+
+if __name__ == "__main__":
+    main()
