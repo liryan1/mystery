@@ -5,8 +5,15 @@
 7. Read on Shannon information entropy. Construct Huffman tree from a probability distribution
 8. generate nth fibonacci number with O(log n) time
 
+# System Design Questions
+* You have a server that can handle 10 requests per second. How would you handle a situation when 20 requests come?
+
 # Questions
 1. In recursive functions, python allows function inside. Say if you need the recursive function to pass in additional parameters. How do we deal with this in C++?
+2. LRU Cache #include issue
+3. distributed systems, parallel programming
+4. General considerations for OO design
+5. 
 
 # Progress and Notes
 Some progress updates
