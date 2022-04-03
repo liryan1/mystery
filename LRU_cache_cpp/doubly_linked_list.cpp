@@ -1,31 +1,6 @@
 #include <iostream>
 #include "doubly_linked_list.h"
 
-struct Node
-{
-    int data;
-    struct Node *prev;
-    struct Node *next;
-};
-
-class DLList
-{
-    Node *front;
-    Node *back;
-
-public:
-    DLList()
-    {
-        front = NULL;
-        back = NULL;
-    }
-    void push_back(int);
-    void delete_node(Node *);
-    void display();
-    Node* get_front();
-    Node* get_back();
-};
-
 /* Insert a node at the end of the Doubly Linked list*/
 void DLList::push_back(int val)
 {

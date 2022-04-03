@@ -1,32 +1,72 @@
 # To do
-2. Interpret prefix, postfix, and infix mathematical expressions
-3. Given a string and dictionary, return a string split into two words
-4. class for 24 game, remove duplicate solutions
-7. Read on Shannon information entropy. Construct Huffman tree from a probability distribution
-8. generate nth fibonacci number with O(log n) time
-
-# System Design Questions
-* You have a server that can handle 10 requests per second. How would you handle a situation when 20 requests come?
-
-# Questions
-1. In recursive functions, python allows function inside. Say if you need the recursive function to pass in additional parameters. How do we deal with this in C++?
-2. LRU Cache #include issue
-3. distributed systems, parallel programming
-4. General considerations for OO design
-5. 
+2. design chess game
+3. Interpret prefix, postfix, and infix mathematical expressions
+4. Given a string and dictionary, return a string split into two words
+5. class for 24 game, remove duplicate solutions
+6. Read on Shannon information entropy. Construct Huffman tree from a probability distribution
+7. generate nth fibonacci number with O(log n) time
 
 # Progress and Notes
 Some progress updates
 
-## 2/19
+## Questions 4/2
+1. In recursive functions, python allows function inside. Say if you need the recursive function to pass in additional parameters. How do we deal with this in C++? define a helper function.
+2. LRU Cache #include issue - solved.
+3. combinatorics questions such as https://leetcode.com/discuss/interview-question/1603439
+4. parallel programming/computing
+   - linking multiple computational units to speed up
+
+5. distributed systems
+   - storage across multiple factories
+   - networking
+   - backup systems to deal with failure
+6. General considerations for OO design
+
+
+Ads:
+- big data solutions, pipelines, concurrency, serving, ranking (ML)
+
+* include conflict example
+  a.cpp
+    #include a.h
+    #include b.h
+      #include a.h
+  include guard called pre-compile macro: #ifndef
+
+### OO Design
+- error handling
+  - error code
+  - exception
+- think about abstraction (interface)
+  - which methods?
+  - expandable, but don't over design
+  - principle: one object achieves one task
+- encapsulation: hide private functions and data, provides public information
+  - contract between user and provider
+  - user can never change private items
+  - separate implementation from usage
+- polymorphism
+  - interface
+
+- memory leak: objects do not get deleted and overflows memory
+  - delete in destructor
+  - after owner , destructor is called
+  - shared_ptr (ref counting) - if circular pointer, memory leak still happens
+  - python has an automatic detector
+
+- resource management
+- software design patterns
+
+## February - March 2022
+### 2/19
 - Trees, Huffman tree, AVL, Red Black
 
-## 3/5
+### 3/5
 - Floyd–Warshall algorithm
 - topological ordering of graph
 - check if graph has cycles
 
-## 3/12 Algorithms
+### 3/12 Algorithms
 - bit vector, powers of 2
 - binary search
 - two pointer, sliding window
@@ -42,7 +82,7 @@ Some progress updates
   - ford fulkerson - min cut max flow
   - random walk
 
-## 3/26 Graphs and OO
+### 3/26 Graphs and OO
 - Need to review topological sort & Dijkstra
 - **need to do rectangle problem**
 - Graph(V, E)
@@ -68,3 +108,4 @@ Some progress updates
 - [x] tree traversal using stack & with O(1) space - **Trees/*.py**
 - [x] remove_if - **remove_if.cpp**
 - [x] two rectangles, check if overlap - **overlapping_rectangles.cpp**
+- [x] LRU cache python

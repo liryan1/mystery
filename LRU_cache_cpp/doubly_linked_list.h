@@ -13,8 +13,8 @@ private:
     Node *back;
 
 public:
-    void push_back(int);
-    void delete_node(Node *);
+    void push_back(int val);
+    void delete_node(Node *bye);
     void display();
     Node* get_front();
     Node* get_back();
