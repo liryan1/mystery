@@ -1,4 +1,5 @@
 # To do
+1. Google foo.bar
 2. design chess game
 3. Interpret prefix, postfix, and infix mathematical expressions
 4. Given a string and dictionary, return a string split into two words
