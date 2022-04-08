@@ -2,7 +2,7 @@
 #include <vector>
 using namespace std;
 
-/* Partition numbers and put all smaller than pivot in the left */
+// Partition numbers and put all smaller than pivot in the left
 int partition(vector<int> &numbers, int beg, int end) {
     int pivot_idx = end;
     int left = beg;

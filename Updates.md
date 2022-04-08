@@ -7,6 +7,10 @@
 6. Read on Shannon information entropy. Construct Huffman tree from a probability distribution
 7. generate nth fibonacci number with O(log n) time
 
+## Questions
+1. Merkle tree
+
+
 # Progress and Notes
 Some progress updates
 
@@ -49,6 +53,7 @@ Ads:
 - polymorphism
   - interface
 
+### Memory leak
 - memory leak: objects do not get deleted and overflows memory
   - delete in destructor
   - after owner , destructor is called

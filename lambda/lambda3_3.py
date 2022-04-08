@@ -25,15 +25,15 @@ So, putting that together, and making a common denominator, gives an answer in t
 '''
 
 def multiply(A, v):
-    ''' Left Multiply state vector v by A, i.e. compute Av.
-        A: list[list[int]] (n x n)
-        v: list[int] nx1
+    ''' Compute v*A
     '''
     n = len(v)
-    res = [0]*n
+    res = []
     for i in range(n):
+        vi = 0
         for j in range(n):
-            res[i] += A[i][j] * v[j]
+            vi += A[j][i] * v[j]
+        res.append(vi)
     return res
 
 
@@ -50,7 +50,8 @@ A = [
 
 v0 = [1, 0, 0, 0, 0, 0]
 v1 = multiply(A, v0)
-for i in range(5):
+print(v1)
+for i in range(1, 6):
     v0 = v1
     v1 = multiply(A, v0)
     print("time step:", i)
