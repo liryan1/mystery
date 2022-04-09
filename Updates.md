@@ -14,7 +14,8 @@
 # Progress and Notes
 Some progress updates
 
-## Questions 4/2
+## 4/2
+### Some Questions
 1. In recursive functions, python allows function inside. Say if you need the recursive function to pass in additional parameters. How do we deal with this in C++? define a helper function.
 2. LRU Cache #include issue - solved.
 3. combinatorics questions such as https://leetcode.com/discuss/interview-question/1603439

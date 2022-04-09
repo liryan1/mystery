@@ -37,6 +37,16 @@ def multiply(A, v):
     return res
 
 
+def mult_matrix(X, Y):
+    m, n = len(X), len(Y[0])
+    result = [[0]*n for _ in range(m)]
+    for i in range(m):
+        for j in range(n):
+            for k in range(len(Y)):
+                result[i][j] += X[i][k]*Y[k][j]
+
+    return result
+
 A = [
     # s0, the initial state, goes to s1 and s5 with equal probability
     [0, 1, 0, 0, 0, 1],
@@ -49,11 +59,15 @@ A = [
 ]
 
 v0 = [1, 0, 0, 0, 0, 0]
-v1 = multiply(A, v0)
-print(v1)
-for i in range(1, 6):
-    v0 = v1
-    v1 = multiply(A, v0)
-    print("time step:", i)
-    print(v1)
+print(A)
+A1 = mult_matrix(A, A)
+print(A1)
+A2 = mult_matrix(A, A1)
+print(A2)
+# print(v1)
+# for i in range(1, 6):
+#     v0 = v1
+#     v1 = multiply(A, v0)
+#     print("time step:", i)
+#     print(v1)
 
