@@ -9,6 +9,9 @@
 
 ## Questions
 1. Merkle tree
+2. Protobuffer - serialize data cross platform
+3. metaclass in python - reflection, self code writer
+4. bloom filter
 
 
 # Progress and Notes

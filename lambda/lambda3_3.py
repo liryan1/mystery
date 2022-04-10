@@ -24,50 +24,89 @@ So, putting that together, and making a common denominator, gives an answer in t
 [0, 3, 2, 9, 14].
 '''
 
+
+from fractions import Fraction
+from itertools import combinations
+from functools import reduce
+from math import gcd # if python 2.7, import it from fractions
+
+def solution(m):
+    stable = process(m)
+    error, _sum, v0 = 1e-50, 0, [0]*len(m)
+    v0[0] = 1
+    for i in range(1000):
+        v1 = multiply(m, v0)
+        s = sum(abs(v1[i] - v0[i]) for i in range(len(v1)))
+        if abs(_sum - s) < error:
+            break
+        _sum, v0 = s, v1
+
+    # Get all values of stable states
+    for i in range(len(stable)):
+        stable[i] = v0[stable[i]].limit_denominator()
+    
+    return convert(stable)
+
+
+def convert(stable):
+    '''Convert fractions to integers and append denominator '''
+    combs = combinations([x.denominator for x in stable], 2)
+    denom = 1
+    for item in combs:
+        res = reduce(lcm, (a for a in item))
+        denom = max(res, denom)
+
+    answer = [(a * denom/a.denominator).numerator for a in stable]
+    return answer + [denom]
+
+
+def lcm(a, b):
+    ''' Least common denominator for positive numbers a and b. '''
+    return (a*b) // gcd(a, b)
+
+
 def multiply(A, v):
     ''' Compute v*A
     '''
     n = len(v)
-    res = []
+    res = [0]*n
     for i in range(n):
-        vi = 0
         for j in range(n):
-            vi += A[j][i] * v[j]
-        res.append(vi)
+            res[i] += A[j][i] * v[j]
     return res
 
-
-def mult_matrix(X, Y):
-    m, n = len(X), len(Y[0])
-    result = [[0]*n for _ in range(m)]
-    for i in range(m):
-        for j in range(n):
-            for k in range(len(Y)):
-                result[i][j] += X[i][k]*Y[k][j]
-
-    return result
+def process(A):
+    '''Change states to probabilities and end states to repeat itself. '''
+    terminal = []
+    for i in range(len(A)):
+        _sum = sum(A[i])
+        if _sum == 0:
+            A[i][i] = Fraction(1, 1)
+            terminal.append(i)
+            continue
+        for j in range(len(A[i])):
+            A[i][j] = Fraction(A[i][j], _sum) # A[i][j]/_sum #
+    return terminal
+        
 
 A = [
     # s0, the initial state, goes to s1 and s5 with equal probability
     [0, 1, 0, 0, 0, 1],
     [4, 0, 0, 3, 2, 0],  # s1 can become s0, s3, or s4, but with different probabilities
     # s2 is terminal, and unreachable (never observed in practice)
-    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],  
     [0, 0, 0, 0, 0, 0],  # s3 is terminal
     [0, 0, 0, 0, 0, 0],  # s4 is terminal
     [0, 0, 0, 0, 0, 0],  # s5 is terminal
 ]
 
-v0 = [1, 0, 0, 0, 0, 0]
-print(A)
-A1 = mult_matrix(A, A)
-print(A1)
-A2 = mult_matrix(A, A1)
-print(A2)
-# print(v1)
-# for i in range(1, 6):
-#     v0 = v1
-#     v1 = multiply(A, v0)
-#     print("time step:", i)
-#     print(v1)
+B = [
+    [0, 2, 1, 0, 0],
+    [0, 0, 0, 3, 4],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+]
 
+print(solution(A))
+print(solution(B))
