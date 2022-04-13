@@ -1,6 +1,4 @@
 // Given two sets of points representing rectangles, return whether they overlap.
-// R1:
-#include <vector>
 #include <iostream>
 #include <assert.h>
 using namespace std;
