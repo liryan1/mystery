@@ -1,11 +1,41 @@
 # To do
-1. Google foo.bar
-2. design chess game
+1. design real system - class enrollment, generate invoice, scheduling
+2. Google foo.bar
 3. Interpret prefix, postfix, and infix mathematical expressions
 4. Given a string and dictionary, return a string split into two words
 5. class for 24 game, remove duplicate solutions
 6. Read on Shannon information entropy. Construct Huffman tree from a probability distribution
 7. generate nth fibonacci number with O(log n) time
+8. Read about bloom filter
+9. Read about Protocol Buffer
+10. check out Spark and Hadoop APIs
+
+## 4/17
+1. C++ const reference, reference, copy inputs in function lead to overloading
+2. 3 Google papers - Google FileSystem, MapReduce, BigTable
+3. B-Tree, insert, delete, range query, scan
+4. Data pipeline:
+   1. storage
+   2. processing
+      1. MapReduce
+         1. Map - for w in doc, emit(w, 1)
+         2. shuffle
+         3. reduce
+      2. failure tolerance good
+      3. Hadoop low level mapreduce, connect procedures through I/O
+      4. apache spark - streaming process, skips I/O, connects steps for data processing, programmer offers DAG, compiler optimizes
+
+5. bottleneck <-> hot spot -> load balancer
+6. 3 hardware locations
+   1. CPU - parallel, scale up
+   2. memory - processing happens here
+   3. disk - external system, slow, input has to come from disk 
+      1. do middle stages need to write to disk - CPU trading disk I/O
+      2. deal with failures, probabilistic trade off
+
+concurrency - transactions
+  - read, modify, write
+  - automicity - check if read version has been modified
 
 ## Questions
 1. Merkle tree

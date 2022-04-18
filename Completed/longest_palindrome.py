@@ -1,51 +1,29 @@
-''' Instructions
-Given a string s which consists of lowercase or uppercase letters, return the length of the longest palindrome that can be built with those letters.
-
-Letters are case sensitive, for example, "Aa" is not considered a palindrome here.
-'''
-''' Examples
-Input: s = "abccccdd"
-Output: 7
-Explanation:
-One longest palindrome that can be built is "dccaccd", whose length is 7.
-
-Input: s = "a"
-Output: 1
-
-Input: s = "bb"
-Output: 2
-'''
-''' Thoughts
-1. look through and save all instances of the string - dict{char: count}
-2. check dict. start with len(s). If more than one odd, minus 1. 
-'''
-'''Edge cases
-'a' -> 1
-'aaaaaaaaaaaaa' -> 13
-'AabB' -> 1
-'aabbccdef' -> 7
-'aabbccDDEE' -> 10
+''' Given a string s, find and return the longest contiguous substring of s that is a palindrome.
+    
+    Key point for sliding window: omit checking larger subsets if smaller already fails condition.
 '''
 
+def longestPalindrome(s: str) -> str:
+    ''' Classic sliding window algorithm with O(n^2) time and O(n) space. '''
+    n: int = len(s)
+    longest_start = longest_len = 0 # track the longest
 
-def longest_palindrome(s: str) -> int:
-    ''' Time complexity: O(n)
-        Space complexity: O(1) because s can only have letters, i.e. 52 possibilities
-        where n is the length of s
-    '''
-    counts = {}
-    for ch in s:
-        counts[ch] = counts.get(ch, 0) + 1
+    for i in range(n):
+        right = i
+        # Check consecutive same characters and use as starting point
+        while right + 1 < n and s[right] == s[right+1]:
+            right += 1
 
-    longest = len(s)
-    for count in counts.values():
-        if count % 2 == 1:
-            longest -= 1
+        left = i
+        # expand both ways if palindrome exists
+        while left > 0 and right + 1 < n and s[left-1] == s[right+1]:
+            left -= 1
+            right += 1
 
-    if len(s) > longest:
-        longest += 1
-    return longest
+        # Update the longest seen so far
+        L = right - left + 1
+        if L > longest_len:
+            longest_start = left
+            longest_len = L
 
-
-a = "aabbccddef"
-print(longest_palindrome(a))
+    return s[longest_start:longest_start+longest_len]

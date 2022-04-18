@@ -1,7 +1,7 @@
 import unittest
 import random
 import string
-from longest_palindrome import longest_palindrome
+from Completed.longest_palindrome import longest_palindrome
 
 '''
 'a' -> 1
