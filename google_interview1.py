@@ -1,13 +1,12 @@
 '''
-List of strings, all strings equal length
+Input: a list of N strings, all strings are length k
 
-return True if at least one pair of string has hamming distance of exactly 1
+return True if at least one pair of string has hamming distance of exactly 1.
 
 ["abc", "acb", "xyz", "abd"] -> True
 ["abc", "abc", "abc"] -> False
 
-N: length of strings, k: length of each string
-k << N
+interviwer: you can assume that k << N.
 
 "abc"
 table {index: {character}}
