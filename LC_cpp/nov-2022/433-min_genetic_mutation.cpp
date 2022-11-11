@@ -1,7 +1,5 @@
-#include<string>
-#include<vector>
-#include<unordered_set>
-#include<queue>
+#include "includes.h"
+
 using namespace std;
 
 // https://leetcode.com/problems/minimum-genetic-mutation/
