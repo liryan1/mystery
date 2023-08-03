@@ -1,5 +1,4 @@
 #include "common_ds.h"
-using namespace std;
 
 void backTrack(
   vector<vector<int>>& result,

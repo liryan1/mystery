@@ -1,0 +1,8 @@
+{
+  "files.associations": {
+    "*.html": "html",
+    "*.txt": "plaintext",
+    "vector": "cpp",
+    "numeric": "cpp"
+  }
+}
