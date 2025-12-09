@@ -4,5 +4,6 @@
     "numeric": "cpp",
     "unordered_map": "cpp"
   },
-  "C_Cpp.default.compilerPath": "/usr/bin/clang++"
+  "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+  "python.REPL.enableREPLSmartSend": false
 }
